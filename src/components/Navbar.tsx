@@ -2,6 +2,7 @@ import { Layout, Menu, Row } from 'antd';
 import React, {FC} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../router';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Navbar: FC = () => {
 
@@ -11,13 +12,13 @@ const Navbar: FC = () => {
     navigate(RouteNames.LOGIN)
   }
 
-  const auth = true;
+  const {isAuth} = useTypedSelector(state => state.authReducer)
   
   return (
     <Layout.Header>
       <Row justify="end">
 
-        {auth
+        {isAuth
 
         ?
 
