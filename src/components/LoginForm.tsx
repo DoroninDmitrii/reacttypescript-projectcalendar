@@ -1,13 +1,20 @@
 import React from 'react';
 import {Form, Input, Button} from 'antd';
 import { rules } from '../utils/utils';
+import { useDispatch } from 'react-redux';
+import { AuthActionCreators } from '../store/reducers/authReducer/actionCreatorAuth';
+import { useActions } from '../hooks/userAction';
 
 const LoginForm = () => {
 
+  const {login} = useActions()
+
+
 const onFinish = () => {
-  console.log('Hello');
-  
+  // dispatch(AuthActionCreators.login('dsds', 'dsdsds'))
+  login('', '')
 }
+
 
   return (
     <Form onFinish={onFinish}>
