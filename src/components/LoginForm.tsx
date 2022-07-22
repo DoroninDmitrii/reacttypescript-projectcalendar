@@ -1,29 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Form, Input, Button} from 'antd';
 import { rules } from '../utils/utils';
-import { useDispatch } from 'react-redux';
-import { AuthActionCreators } from '../store/reducers/authReducer/actionCreatorAuth';
 import { useActions } from '../hooks/userAction';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const LoginForm = () => {
 
   const {login} = useActions()
+  const {error, isLoading} = useTypedSelector(state => state.authReducer)
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
 const onFinish = () => {
-  // dispatch(AuthActionCreators.login('dsds', 'dsdsds'))
-  login('', '')
+  login(username, password)
 }
-
 
   return (
     <Form onFinish={onFinish}>
+      {error && <div style={{color: 'red'}}>{error}</div>}
       <Form.Item
         label="Username"
         name="username"
         rules={[rules.required('Please input your username!')]}
       >
-        <Input />
+        <Input value={username} onChange={(e) => setUsername(e.target.value)}/>
       </Form.Item>
 
       <Form.Item
@@ -31,11 +32,11 @@ const onFinish = () => {
         name="password"
         rules={[rules.required('Please input your password!')]}
       >
-        <Input.Password />
+        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={isLoading}>
           Login
         </Button>
       </Form.Item>

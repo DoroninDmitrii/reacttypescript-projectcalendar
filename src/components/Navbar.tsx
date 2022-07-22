@@ -3,16 +3,18 @@ import React, {FC} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../router';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/userAction';
 
 const Navbar: FC = () => {
 
-  const navigate = useNavigate()
+  const {logout} = useActions();
+  const navigate = useNavigate();
 
   const login = () => {
     navigate(RouteNames.LOGIN)
   }
 
-  const {isAuth} = useTypedSelector(state => state.authReducer)
+  const {isAuth, user} = useTypedSelector(state => state.authReducer)
   
   return (
     <Layout.Header>
@@ -24,9 +26,9 @@ const Navbar: FC = () => {
 
         <Menu theme="dark" mode="horizontal" selectable={false}>
           <div style={{color: 'white'}}>
-            Dima Doronin
+            {user.username}
           </div>
-          <Menu.Item key={1} onClick={() => console.log('Logout')}>Logout</Menu.Item>
+          <Menu.Item key={1} onClick={() => logout()}>Logout</Menu.Item>
         </Menu>
 
         :
