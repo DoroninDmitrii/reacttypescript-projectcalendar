@@ -1,4 +1,4 @@
-import { DatePicker, Form, Input, Button, Row } from 'antd';
+import { DatePicker, Form, Input, Button, Row, Select } from 'antd';
 import React from 'react';
 import { rules } from '../utils/utils';
 
@@ -20,6 +20,24 @@ const EventForm = () => {
       >
         <DatePicker/>
     </Form.Item>
+
+    <Form.Item
+      label="Event data"
+      name="data"
+      rules={[rules.required('Please input information')]}
+      >
+      <Select>
+        <Select.Option value="jack">Jack</Select.Option>
+        <Select.Option value="lucy">Lucy</Select.Option>
+        <Select.Option value="disabled" disabled>
+          Disabled
+        </Select.Option>
+      <Select.Option value="Yiminghe">yiminghe</Select.Option>
+    </Select>
+
+    </Form.Item>
+
+
 
     <Row justify="end">
     <Form.Item>
