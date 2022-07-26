@@ -1,4 +1,5 @@
 import { DatePicker, Form, Input, Button, Row, Select } from 'antd';
+import { Moment } from 'moment';
 import React, {FC, useState} from 'react';
 import { IEvent } from '../models/IEvent';
 import { IUser } from '../models/IUser';
@@ -17,6 +18,10 @@ const EventForm: FC<EventFormProps> = ({guests}) => {
     guest: ''
   } as IEvent)
 
+  const selectDate = (date: Moment | null) => {
+    console.log(date);
+  }
+
 
   return (
     <Form>
@@ -25,7 +30,7 @@ const EventForm: FC<EventFormProps> = ({guests}) => {
       name="description"
       rules={[rules.required('Please input information')]}
       >
-        <Input autoComplete='off'/>
+        <Input autoComplete='off' value={event.description} onChange={e => setEvent({...event, description: e.target.value})} />
     </Form.Item>
 
     <Form.Item
@@ -33,7 +38,7 @@ const EventForm: FC<EventFormProps> = ({guests}) => {
       name="data"
       rules={[rules.required('Please input information')]}
       >
-        <DatePicker/>
+        <DatePicker onChange={(date) => selectDate(date)}/>
     </Form.Item>
 
     <Form.Item
