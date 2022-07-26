@@ -1,11 +1,20 @@
 import { Button, Row, Modal } from 'antd';
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import EventCalendar from '../components/EventCalendar';
 import EventForm from '../components/EventForm';
+import { useActions } from '../hooks/userAction';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Event: FC = () => {
 
 const [isModalVisible, setIsModalVisible] = useState(false);
+
+const {fetchGuests} = useActions();
+const {guests} = useTypedSelector(state => state.EventReducer);
+
+useEffect(() => {
+  fetchGuests()
+}, [])
 
   return (
     <div>
@@ -22,7 +31,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
        footer={null}
        onCancel={() => setIsModalVisible(false)}
        >
-        <EventForm/>
+        <EventForm guests={guests}/>
       </Modal>
     </div>
   );

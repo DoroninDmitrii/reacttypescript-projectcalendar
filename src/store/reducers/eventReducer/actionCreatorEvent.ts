@@ -1,3 +1,4 @@
+import UserService from "../../../api/UserService";
 import { IEvent } from "../../../models/IEvent";
 import { IUser } from "../../../models/IUser";
 import { AppDispatch } from "../../store";
@@ -9,7 +10,8 @@ export const EventActionCreator = {
   setEvents: (payload: IEvent[]): SetEventsAction => ({type: EventActionEnum.SET_EVENTS, payload: payload}),
   fetchGuests: () => async (dispatch: AppDispatch) => {
     try {
-      const guests = await
+      const response = await UserService.getUsers();
+      dispatch(EventActionCreator.setGuests(response.data));
     } catch(e) {
       console.log(e)
     }

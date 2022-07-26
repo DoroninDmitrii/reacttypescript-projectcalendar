@@ -12,9 +12,9 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-const onFinish = () => {
-  login(username, password)
-}
+  const onFinish = () => {
+    login(username, password)
+  }
 
   return (
     <Form onFinish={onFinish}>

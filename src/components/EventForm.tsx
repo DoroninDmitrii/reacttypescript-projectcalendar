@@ -1,8 +1,23 @@
 import { DatePicker, Form, Input, Button, Row, Select } from 'antd';
-import React from 'react';
+import React, {FC, useState} from 'react';
+import { IEvent } from '../models/IEvent';
+import { IUser } from '../models/IUser';
 import { rules } from '../utils/utils';
 
-const EventForm = () => {
+interface EventFormProps {
+  guests: IUser[]
+}
+
+const EventForm: FC<EventFormProps> = ({guests}) => {
+
+  const [event, setEvent] = useState<IEvent>({
+    author: '',
+    date: '',
+    description: '',
+    guest: ''
+  } as IEvent)
+
+
   return (
     <Form>
     <Form.Item
@@ -22,17 +37,16 @@ const EventForm = () => {
     </Form.Item>
 
     <Form.Item
-      label="Event data"
-      name="data"
+      label="Chose guest"
+      name="guest"
       rules={[rules.required('Please input information')]}
       >
-      <Select>
-        <Select.Option value="jack">Jack</Select.Option>
-        <Select.Option value="lucy">Lucy</Select.Option>
-        <Select.Option value="disabled" disabled>
-          Disabled
-        </Select.Option>
-      <Select.Option value="Yiminghe">yiminghe</Select.Option>
+      <Select onChange={(guest: string) => setEvent({...event, guest})}>
+        {guests.map(guests => 
+          <Select.Option key={guests.username} value={guests.username}>
+            {guests.username}
+          </Select.Option>
+        )}
     </Select>
 
     </Form.Item>
