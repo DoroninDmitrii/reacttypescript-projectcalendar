@@ -10,6 +10,8 @@ interface EventCalendarProps {
 const EventCalendar: FC<EventCalendarProps> = ({event}) => {
 
   const dateCellRender = (value: Moment) => {
+    console.log('hello')
+
     const listData = getListData(value);
     return (
       <div></div>
