@@ -26,7 +26,7 @@ const addNewEvent = (event: IEvent) => {
 
   return (
     <Layout>
-      <EventCalendar event={[]}/>
+      <EventCalendar event={events}/>
       <Row justify="center">
           <Button
           onClick={() => setIsModalVisible(true)}

@@ -1,4 +1,5 @@
 import { Calendar } from 'antd';
+import { Moment } from 'moment';
 import React, {FC} from 'react';
 import { IEvent } from '../models/IEvent';
 
@@ -6,10 +7,17 @@ interface EventCalendarProps {
   event: IEvent[];
 }
 
-const EventCalendar: FC<EventCalendarProps> = () => {
+const EventCalendar: FC<EventCalendarProps> = ({event}) => {
+
+  const dateCellRender = (value: Moment) => {
+    const listData = getListData(value);
+    return (
+      <div></div>
+    );
+  };
 
   return (
-    <Calendar/>
+    <Calendar dateCellRender={dateCellRender}/>
   );
 };
 
