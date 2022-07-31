@@ -1,9 +1,7 @@
-import axios from "axios";
 import UserService from "../../../api/UserService";
 import { IUser } from "../../../models/IUser";
 import { AppDispatch } from "../../store";
 import { AuthActionEnum, SetAuthAction, SetErrorAction, SetIsLoadingAction, SetUserAction } from "./types";
-
 
 export const AuthActionCreators = {
   setUser: (user: IUser): SetUserAction => ({type: AuthActionEnum.SET_USER, payload: user}),

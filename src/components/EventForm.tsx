@@ -47,7 +47,7 @@ const EventForm: FC<EventFormProps> = ({guests, submit}) => {
     <Form.Item
       label="Event data"
       name="data"
-      rules={[rules.required('Please input information')]}
+      rules={[rules.required('Please input information'), rules.isDateAfter('This date is passed')]}
       >
         <DatePicker onChange={(date) => selectDate(date)}/>
     </Form.Item>

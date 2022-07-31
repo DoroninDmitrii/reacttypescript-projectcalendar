@@ -6,8 +6,8 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const LoginForm = () => {
 
-  const {login} = useActions()
-  const {error, isLoading} = useTypedSelector(state => state.authReducer)
+  const {login} = useActions();
+  const {error, isLoading} = useTypedSelector(state => state.authReducer);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

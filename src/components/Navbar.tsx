@@ -14,7 +14,7 @@ const Navbar: FC = () => {
     navigate(RouteNames.LOGIN)
   }
 
-  const {isAuth, user} = useTypedSelector(state => state.authReducer)
+  const {isAuth, user} = useTypedSelector(state => state.authReducer);
   
   return (
     <Layout.Header>
@@ -33,7 +33,6 @@ const Navbar: FC = () => {
 
         :
 
-      
         <Menu theme="dark" mode="horizontal" selectable={false}>
           <Menu.Item key={1} onClick={login}>Login</Menu.Item>
         </Menu>
